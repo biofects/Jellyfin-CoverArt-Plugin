@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <RootNamespace>Jellyfin.Plugin.CoverArt</RootNamespace>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Jellyfin.Controller" Version="10.11.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Jellyfin.Model" Version="10.11.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="SkiaSharp" Version="3.116.1">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Configuration/configPage.html" />
+    <EmbeddedResource Include="Configuration/configPage.html" />
+    <EmbeddedResource Include="../assets/cases/dvd.png" LogicalName="Jellyfin.Plugin.CoverArt.Assets.Cases.dvd.png" />
+    <EmbeddedResource Include="../assets/cases/bluray.png" LogicalName="Jellyfin.Plugin.CoverArt.Assets.Cases.bluray.png" />
+    <EmbeddedResource Include="../assets/cases/uhd.png" LogicalName="Jellyfin.Plugin.CoverArt.Assets.Cases.uhd.png" />
+    <EmbeddedResource Include="../assets/cases/small/dvd.png" LogicalName="Jellyfin.Plugin.CoverArt.Assets.Cases.Small.dvd.png" />
+    <EmbeddedResource Include="../assets/cases/small/bluray.png" LogicalName="Jellyfin.Plugin.CoverArt.Assets.Cases.Small.bluray.png" />
+    <EmbeddedResource Include="../assets/cases/small/uhd.png" LogicalName="Jellyfin.Plugin.CoverArt.Assets.Cases.Small.uhd.png" />
+  </ItemGroup>
+</Project>

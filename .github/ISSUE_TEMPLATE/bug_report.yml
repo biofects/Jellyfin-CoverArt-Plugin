@@ -1,0 +1,57 @@
+name: Bug report
+description: Report a reproducible problem with Jellyfin Cover Art
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for helping test Jellyfin Cover Art. Please remove private paths and tokens from logs.
+  - type: input
+    id: plugin-version
+    attributes:
+      label: Plugin version
+      placeholder: 1.0.0.0
+    validations:
+      required: true
+  - type: input
+    id: jellyfin-version
+    attributes:
+      label: Jellyfin version
+      placeholder: 10.11.x
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Server environment
+      description: Operating system, architecture, and container image if applicable.
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Include the media type, image orientation, expected result, and actual result.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues.
+          required: true
+        - label: I removed private paths, hostnames, and tokens from logs.
+          required: true

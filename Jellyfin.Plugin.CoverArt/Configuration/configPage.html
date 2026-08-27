@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Cover Art</title>
+</head>
+<body>
+    <div id="CoverArtConfigPage" data-role="page" class="page type-interior pluginConfigurationPage">
+        <div data-role="content">
+            <div class="content-primary">
+                <form id="CoverArtConfigForm">
+                    <div class="verticalSection verticalSection-extrabottompadding">
+                        <div class="sectionTitleContainer flex align-items-center">
+                            <h2 class="sectionTitle">Cover Art</h2>
+                        </div>
+                        <p>Choose which library images use a DVD, Blu-ray, or 4K UHD case cover.</p>
+
+                        <h3 class="sectionTitle">Case covers</h3>
+                        <label class="emby-checkbox-label"><input id="MovieStyle" type="checkbox" is="emby-checkbox"><span>Movies</span></label>
+                        <label class="emby-checkbox-label"><input id="SeriesStyle" type="checkbox" is="emby-checkbox"><span>TV series</span></label>
+                        <label class="emby-checkbox-label"><input id="SeasonStyle" type="checkbox" is="emby-checkbox"><span>TV seasons</span></label>
+                        <label class="emby-checkbox-label"><input id="EpisodeStyle" type="checkbox" is="emby-checkbox"><span>TV episodes</span></label>
+                        <label class="emby-checkbox-label"><input id="AlbumStyle" type="checkbox" is="emby-checkbox"><span>Music albums</span></label>
+                        <label class="emby-checkbox-label"><input id="CollectionStyle" type="checkbox" is="emby-checkbox"><span>Collections</span></label>
+
+                        <button is="emby-button" type="submit" class="raised button-submit block emby-button"><span>Save</span></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <script type="text/javascript">
+            (() => {
+                const pluginId = '30f529e1-8b78-43dd-94e5-d160eab4bd2f';
+                const fields = ['MovieStyle', 'SeriesStyle', 'SeasonStyle', 'EpisodeStyle', 'AlbumStyle', 'CollectionStyle'];
+                const page = document.querySelector('#CoverArtConfigPage');
+                const control = id => document.getElementById(id);
+
+                const loadConfiguration = () => {
+                    Dashboard.showLoadingMsg();
+                    ApiClient.getPluginConfiguration(pluginId).then(config => {
+                        fields.forEach(id => { control(id).checked = config[id] !== 'None'; });
+                        Dashboard.hideLoadingMsg();
+                    });
+                };
+
+                page.addEventListener('pageshow', loadConfiguration);
+                loadConfiguration();
+
+                page.querySelector('#CoverArtConfigForm').addEventListener('submit', event => {
+                    event.preventDefault();
+                    Dashboard.showLoadingMsg();
+                    ApiClient.getPluginConfiguration(pluginId).then(config => {
+                        fields.forEach(id => { config[id] = control(id).checked ? 'ThickCase' : 'None'; });
+                        ApiClient.updatePluginConfiguration(pluginId, config).then(Dashboard.processPluginConfigurationUpdateResult);
+                    });
+                    return false;
+                });
+            })();
+        </script>
+    </div>
+</body>
+</html>

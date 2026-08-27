@@ -1,0 +1,42 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Install native test dependencies
+        run: sudo apt-get update && sudo apt-get install --yes libfontconfig1
+
+      - name: Test and publish
+        run: |
+          dotnet test Jellyfin.Plugin.CoverArt.slnx -c Release
+          dotnet publish Jellyfin.Plugin.CoverArt/Jellyfin.Plugin.CoverArt.csproj -c Release --no-restore
+
+      - name: Package plugin
+        run: |
+          mkdir -p staging
+          cp Jellyfin.Plugin.CoverArt/bin/Release/net9.0/publish/Jellyfin.Plugin.CoverArt.dll staging/
+          cd staging
+          zip ../Jellyfin.Plugin.CoverArt-${{ github.ref_name }}.zip Jellyfin.Plugin.CoverArt.dll
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: CHANGELOG.md
+          files: Jellyfin.Plugin.CoverArt-${{ github.ref_name }}.zip

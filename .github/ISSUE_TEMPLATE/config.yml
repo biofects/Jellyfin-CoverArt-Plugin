@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Jellyfin support
+    url: https://jellyfin.org/contact/
+    about: Use official channels for Jellyfin issues unrelated to this plugin.

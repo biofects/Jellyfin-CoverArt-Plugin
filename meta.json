@@ -1,0 +1,15 @@
+{
+  "category": "Metadata",
+  "changelog": "Initial public release with format-aware DVD, Blu-ray, and 4K UHD case covers.",
+  "description": "Applies format-aware DVD, Blu-ray, and 4K UHD case covers to selected Jellyfin library images.",
+  "guid": "30f529e1-8b78-43dd-94e5-d160eab4bd2f",
+  "name": "Cover Art",
+  "overview": "Photographic format-aware case covers for Jellyfin.",
+  "owner": "biofects",
+  "targetAbi": "10.11.0.0",
+  "timestamp": "2026-08-27T00:00:00.0000000Z",
+  "version": "1.0.0.0",
+  "status": "Active",
+  "autoUpdate": false,
+  "assemblies": []
+}
