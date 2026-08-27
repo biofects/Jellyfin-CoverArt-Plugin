@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="assets/branding/logo.png" alt="Biofects Cover Art" width="220">
+	<img src="assets/branding/Biofects-Jellyfin-CoverArt.jpeg" alt="Biofects Jellyfin Cover Art" width="900">
 </p>
 
 <h1 align="center">Jellyfin Cover Art</h1>
